@@ -19,7 +19,11 @@
               <ul class="dropdown-menu">
                 <li><%= link_to 'My profile', user_path(current_user) %></li>
                 <li role="separator" class="divider"></li>
+                <li><%= link_to 'Update', edit_user_path(current_user) %></li>
+                <li role="separator" class="divider"></li>
                 <li><%= link_to 'Logout', logout_path, method: :delete %></li>
+                <li role="separator" class="divider"></li>
+                <li><%= link_to 'delete', @user, method: :delete, data: { confirm: '退会してもよろしいですか？' } %></li>
               </ul>
             </li>
           <% else %>
