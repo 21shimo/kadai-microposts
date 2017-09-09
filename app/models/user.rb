@@ -7,12 +7,12 @@ class User < ApplicationRecord
   validates :age, presence: true
   has_secure_password
   
-  has_many :microposts
-  has_many :relationships
+  has_many :microposts, dependent: :destroy
+  has_many :relationships, dependent: :destroy
   has_many :followings, through: :relationships, source: :follow
   has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id'
   has_many :followers, through: :reverses_of_relationship, source: :user
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   has_many :favorite_posts, through: :favorites, source: :micropost   # お気に入り登録しているpostsの取得
 
   def follow(other_user)
